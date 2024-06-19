@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  mve-joiner-redux:
+    image: mcr.microsoft.com/devcontainers/base:bookworm
+    command: sleep infinity
+    env_file:
+      - devcontainer.env
+    volumes:
+      - ../:/workspaces/mve-joiner-redux:cached

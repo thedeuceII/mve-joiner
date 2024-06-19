@@ -1,0 +1,60 @@
+{
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "mve-joiner-redux",
+  "workspaceFolder": "/workspaces/mve-joiner-redux",
+  "name": "mve-joiner-redux",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+        "python.interpreter.infoVisibility": "always",
+        "python.testing.cwd": "${containerWorkspaceFolder}",
+        "python.experiments.optInto": ["pythonTerminalEnvVarActivation"]
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-python.vscode-pylance",
+        "ms-python.mypy-type-checker",
+        "ms-python.black-formatter",
+        "visualstudioexptteam.vscodeintellicode",
+        "yzhang.markdown-all-in-one",
+        "esbenp.prettier-vscode",
+        "EditorConfig.EditorConfig",
+        "MS-vsliveshare.vsliveshare-pack",
+        "github.vscode-pull-request-github",
+        "charliermarsh.ruff",
+        "kennylong.kubernetes-yaml-formatter"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:${containerWorkspaceFolder}/.venv/bin:${containerWorkspaceFolder}/node_modules/.bin",
+    "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv"
+  },
+  "postCreateCommand": "bash -i -c '.devcontainer/install.sh'",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": false
+    },
+    "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
+      "package": "poetry",
+      "version": "1.8.2"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": true
+    },
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker": {}
+  }
+}

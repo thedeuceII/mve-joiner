@@ -1,0 +1,88 @@
+[tool.poetry]
+name = "<application-name>"
+version = "0.1.0"
+description = ""
+authors = [
+    "Josh Morningstar <josh.morningstar@cavallo.com>"
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+kink = "^0.7.0"
+pydantic = "^2.6.1"
+pydantic-settings = "^2.2.1"
+typer = "^0.12.3"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.3.0"
+invoke = "^2.2.0"
+liccheck = "^0.9.2"
+mypy = "^1.9.0"
+pre-commit = "^3.5.0"
+pytest = "^8.0.1"
+pytest-xdist = "^3.3.1"
+ruff = ">=0.2.2,<0.4.0"
+types-invoke = "^2.0.0.9"
+ipykernel = "^6.29.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ['py312']
+line-length = 120
+
+[tool.ruff]
+ignore = ["ERA001"]
+line-length = 120
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "htmlcov",
+    ".pytest_cache",
+]
+select = [
+    "E",
+    "F",
+    "W",
+    "UP",
+    "C90",
+    "I",
+    "N",
+    "C4",
+    "DTZ",
+    "T10",
+    "ISC",
+    "Q",
+    "ERA"
+]
+
+[tool.mypy]
+mypy_path = "typestubs"
+show_error_codes = true
+follow_imports = "silent"
+
+disallow_untyped_defs = true
+disallow_any_unimported = false
+disallow_subclassing_any = true
+disallow_untyped_decorators = true
+
+ignore_missing_imports = true
+implicit_reexport = false
+
+warn_return_any = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+exclude = [
+    "^venv$",
+    "^tests$",
+]
+
+[tool.bandit]
+exclude_dirs = [
+    "tests",
+    "tasks.py"
+]

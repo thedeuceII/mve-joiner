@@ -1,0 +1,45 @@
+default_language_version:
+  python: python3.12
+default_stages: [commit]
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.0
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+  - repo: https://github.com/ambv/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        args: ['--line-length=120']
+  - repo: local
+    hooks:
+      - id: check-licenses
+        name: check-licenses
+        entry: bash -c 'invoke check-licenses'
+        files: (^|/)(pyproject.toml|poetry.lock)$
+        language: system
+        pass_filenames: false
+      - id: check-types
+        name: check-types
+        entry: bash -c 'invoke check-types'
+        language: system
+        pass_filenames: false
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files # Prevent giant files from being committed.
+        args: ['--maxkb=5000']
+      - id: check-ast # Simply check whether files parse as valid python.
+      - id: check-case-conflict # verifies that no file names will have issues with case sensitive file systems
+      - id: check-merge-conflict # checks if any files have merge conflict markers
+      - id: check-toml # Verifies toml syntax
+      - id: check-yaml # Verifies yaml syntax
+      - id: debug-statements # Stops the checkin of breakpoint()
+      - id: forbid-submodules # Stops adding of submodules
+      - id: trailing-whitespace # Cleans up trailing whitespace
+      - id: detect-private-key # Checks for the existence of private keys.
+      - id: mixed-line-ending # Repairs line endings to lf
+        args: ['--fix=lf']
+      - id: no-commit-to-branch # Team branch name convention
+        args: ['--pattern', '^[main|release]$']
